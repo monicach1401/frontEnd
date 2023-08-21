@@ -1,0 +1,37 @@
+.Myitinary{
+  margin-top: 10px;
+}
+.description {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.start-browsing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+  background-color:bisque;
+  border-radius: 50px;
+  
+}
+
+.start-browsing h1 {
+  margin: 0;
+  color:gray;
+}
+
+.options {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+.home-icon {
+ /* align-self: flex-end;*/
+  margin-top: 60px;
+  margin-right: 100px;
+  margin-left: 150px;
+}
