@@ -2,8 +2,10 @@ import React from "react";
 import MYtineraryLogo from '../images/MYtineraryLogo.png';
 import circledright2 from '../images/circledright2.png';
 import homeIcon from '../images/homeIcon.png';
+import { Link } from "react-router-dom";
 
 export const Landing = () => {
+
     return (
         <>
             <div className="d-flex flex-column bd-highlight mb-3">
@@ -12,8 +14,10 @@ export const Landing = () => {
                     <h5><strong>Find your perfect trip</strong>, designed by insiders who know and love their cities</h5>
                     <div className="start-browsing">
                         <h1>START BROWSING</h1>
-                       <img src={circledright2} alt="Circled Right" />
                     </div>
+                    <Link to="/cities">
+                        <img src={circledright2} alt="Circled Right" />
+                    </Link>
                 </div>
                 <div className="options">
                     <h5>Want to build your own MYtinerary?</h5>
