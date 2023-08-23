@@ -37,3 +37,58 @@
   margin-right: 100px;
   margin-left: 150px;
 }
+/* Filter */
+.filter-container {
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  margin-bottom: 5px;
+}
+
+.filter-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.filter-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+/*Lista de ciudades*/
+.listCities{
+  list-style-type: none;
+  margin-right:20px;
+}
+/*New City*/
+.NewCity{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  background-color:beige
+}
+.myButton{
+  margin-top: 10px;
+}
+.myLabel1{
+  margin-left: 15px;
+  padding-right: 20px;
+  margin-bottom: 10px;
+}
+.myLabel2{
+  margin-left: 10px;
+  padding-right: 13px;
+  margin-bottom: 10px;
+}
+.myLabel3{
+  margin-left: 1px;
+  padding-right: 5px;
+}
