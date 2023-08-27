@@ -1,12 +1,17 @@
 .Myitinary{
   margin-top: 10px;
 }
+
 .description {
   text-align: center;
   margin-bottom: 20px;
   margin-top: 50px;
 }
-
+.description p{
+  font-size: 30px;
+  margin-right: 2px;
+  
+}
 .start-browsing {
   display: flex;
   align-items: center;
@@ -62,7 +67,10 @@
 .listCities{
   list-style-type: none;
   margin-right:20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
+
 /*New City*/
 .NewCity{
   margin-top: 10px;
@@ -79,7 +87,8 @@
   margin-top: 10px;
 }
 .myLabel1{
-  margin-left: 15px;
+  margin-top: 10px;
+  margin-left: 17px;
   padding-right: 20px;
   margin-bottom: 10px;
 }
@@ -89,6 +98,6 @@
   margin-bottom: 10px;
 }
 .myLabel3{
-  margin-left: 1px;
+  margin-left: 3px;
   padding-right: 5px;
 }
