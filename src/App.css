@@ -83,21 +83,45 @@
   border-radius: 30px;
   background-color:beige
 }
-.myButton{
+
+/*Formulario Add city*/
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  width: 350px; /* Ajusta el ancho según tus necesidades */
+  margin: auto; /* Centrar el formulario en el medio de la página */
+  background-color: lightgrey;
+  border-radius: 30px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+label {
+  margin-right: 5px;
   margin-top: 10px;
 }
-.myLabel1{
+
+.errorText {
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
+}
+.myButton1{
   margin-top: 10px;
-  margin-left: 17px;
-  padding-right: 20px;
-  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 80px;
+  width: 150px;
 }
-.myLabel2{
-  margin-left: 10px;
-  padding-right: 13px;
+.myButton2{
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 80px;
   margin-bottom: 10px;
-}
-.myLabel3{
-  margin-left: 3px;
-  padding-right: 5px;
+  width: 150px;
 }

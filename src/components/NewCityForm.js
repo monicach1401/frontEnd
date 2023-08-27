@@ -1,110 +1,84 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
-export const NewCityForm = ({hideForm}) => {
+export const NewCityForm = ({ hideForm }) => {
 
-  // creamos un objeto tal cual es el modelo de city
+  /*------------El hook "useForm" se utiliza para gestionar el estado y la validación de formularios.
+   la función "register" se utiliza para registrar los campos de entrada en el formulario, y devuelve las propiedades necesarias para cada entrada.
+   La función "handleSubmit" se pasa a la propiedad "onSubmit" del formulario y es responsable de manejar el envío del formulario.*/
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  // ----------- Creamos un objeto tal cual es el modelo de city
   const [formData, setFormData] = useState({
     name: '',
     country: '',
     img: ''
   });
 
-
-  /* Función que se encarga de actualizar el estado del formulario cada vez que un campo de entrada cambia
-  cuando el usuario escribe algo en el campo de nombre o de país, se dispara un evento de cambio (onChange).
-  event.target es una referencia al elemento en el que ocurrió el evento, en este caso, el campo de entrada (input) que desencadenó el cambio.*/
-  const handleInputChange = (event) => {
-    const { name, value } = event.target; // name es el valor de campo del input (name,country,img) y value lo que el usuario ha introducido
-    setFormData({
-      ...formData, // nos crea una copia del objecto formData 
-      [name]: value
-    });
+  // -----------Función para el botón de Cancel del Formulario
+  const handleCancel = () => {
+    hideForm(); // Llama a la función hideForm para ocultar el formulario
   };
 
+  //------------- Función que añade los datos del formulario en la base de datos
+   const addCityToDatabase=(data)=>{
+     // Datos del formulario los guardo en el objecto newCityData
+     const newCityData = {
+      name: data.name,
+      country: data.country,
+      img: data.img
+    };
+    console.log('newCitaDAta es',newCityData)
 
-  // Función que se ejectuta al enviar el formulario, al darle click al botón
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Controlo que los datos que ha introducido el usuario estén correctos antes de enviarlos
-    const nameRegex = /^[A-Za-z\s]+$/; // Expresión regular para validar nombre como cadena
-    const countryRegex = /^[A-Za-z\s]+$/; // Expresión regular para validar país como cadena
-    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/; // Expresión regular para validar URL
-
-    if (!nameRegex.test(formData.name)) {
-      alert('Invalid city name. Only letters and spaces are allowed.');
-    } else if (!countryRegex.test(formData.country)) {
-      alert('Invalid country name. Only letters and spaces are allowed.');
-    } else if (!urlRegex.test(formData.img)) {
-      alert('Invalid image URL format.');
-    } else {
-
-      // Datos del formulario los guardo en el objecto newCityData
-      const newCityData = {
-        name: formData.name,
-        country: formData.country,
-        img: formData.img
-      };
-
-      // guardo los datos en el servidor
-      fetch('http://localhost:5000/cities', {
-        method: 'POST',
-        headers: {// vamos a enviar los datos en formato JSON
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newCityData)// convertimos el objeto a texto
+    // guardo los datos en el servidor
+    fetch('http://localhost:5000/cities', {
+      method: 'POST',
+      headers: {// vamos a enviar los datos en formato JSON
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newCityData)// convertimos el objeto a texto
+    })
+      .then(response => response.json())
+      .then(data => {
+        hideForm(); // oculta el formulario
+        console.log(data);
       })
-        .then(response => response.json())
-        .then(data => {
-          hideForm(); // oculta el formulario
-          console.log(data);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-
-    }
-  };
+      .catch(error => {
+        console.error(error);
+      });
+   }
 
   return (
-    <div className='NewCity'>
-      {/*Formulario de entrada de datos de una nueva ciudad */}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label className="myLabel1" htmlFor="name">Name: </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="myLabel2" htmlFor="country">Country: </label>
-          <input
-            type="text"
-            id="country"
-            name="country"
-            value={formData.country}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="myLabel3" htmlFor="img">Image URL: </label>
-          <input
-            type="text"
-            id="img"
-            name="img"
-            value={formData.img}
-            onChange={handleInputChange}
-          />
-        </div>
-        <button className="myButton" type="submit">Add</button>
-      </form>
-    </div>
+    <form className="formContainer" onSubmit={handleSubmit(addCityToDatabase)}>
+      {/* Name */}
+      <div className="inputContainer">
+        <label htmlFor="name">Name:</label>
+        <input {...register('name', { required: true, pattern: /^[A-Za-z\s]+$/ })} />
+        {errors.name && <p className="errorText">This field is required , Only letters and spaces are allowed and the first letter better in Uppercase .</p>}
+      </div>
+      {/* Country */}
+      <div className="inputContainer">
+        <label htmlFor="country">Country:</label>
+        <input {...register('country', { required: true, pattern: /^[A-Za-z\s]+$/ })} />
+        {errors.country && <p className="errorText">This field is required , Only letters and spaces are allowed and the first letter better in Uppercase.</p>}
+      </div>
+      {/* Img's URL */}
+      <div className="inputContainer">
+        <label htmlFor="img">URL:</label>
+        <input {...register('img', { required: true, pattern: /^(ftp|http|https):\/\/[^ "]+$/ })} />
+        {errors.img && <p className="errorText">This field is required.Incorrect format</p>}
+      </div>
+
+      <button className="myButton2" type="submit">Add City</button>
+      <button className="myButton2" type="button" onClick={handleCancel}>Cancel</button>
+    </form>
   );
 };
+
 
 
 
