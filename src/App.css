@@ -1,47 +1,64 @@
 .Myitinary{
-  margin-top: 10px;
+  margin-top: 30px;
+  margin-left: 80px;
 }
 
 .description {
-  text-align: center;
+  text-align:center;
   margin-bottom: 20px;
-  margin-top: 50px;
-}
-.description p{
-  font-size: 30px;
-  margin-right: 2px;
-  
-}
-.start-browsing {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 300px;
   margin-top: 40px;
   margin-left: 20px;
+  margin-right: 10px;
+  font-family:cursive
+}
+.description p{
+  font-size: 15px;
+}
+
+.start-browsing {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width:250px;
+  margin-top: 50px;
+  margin-left: 70px;
   margin-right: 40px;
   background-color:bisque;
-  border-radius: 50px;
- }
+  }
 
-.start-browsing h1 {
-  margin: 0;
-  color:gray;
+.start-browsing h6 {
+   color:red;
+   text-align: center;
+   font-size: large;
+}
+.start-browsing img{
+  margin-left: 85px;
 }
 
 .options {
+  border-style:groove;
+  border-color:gray;
+  border-start-start-radius: 30px;
   text-align: center;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 50px;
+  margin-top: 60px;
+  font-family:cursive
+  
+}
+.options h5{
+  font-size: 17px;
 }
 
 .home-icon {
  /* align-self: flex-end;*/
-  margin-top: 60px;
+  margin-top: 80px;
   margin-right: 100px;
-  margin-left: 150px;
+  margin-left: 160px;
 }
+
 /* Filter */
 .filter-container {
   text-align: center;
@@ -63,6 +80,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
 /*Lista de ciudades*/
 .listCities{
   list-style-type: none;
