@@ -32,8 +32,7 @@ export const NewCityForm = ({ hideForm }) => {
       country: data.country,
       img: data.img
     };
-    console.log('newCitaDAta es',newCityData)
-
+  
     // guardo los datos en el servidor
     fetch('http://localhost:5000/cities', {
       method: 'POST',
@@ -58,13 +57,13 @@ export const NewCityForm = ({ hideForm }) => {
       <div className="inputContainer">
         <label htmlFor="name">Name:</label>
         <input {...register('name', { required: true, pattern: /^[A-Za-z\s]+$/ })} />
-        {errors.name && <p className="errorText">This field is required , Only letters and spaces are allowed and the first letter better in Uppercase .</p>}
+        {errors.name && <p className="errorText">This field is required , Only letters and spaces are allowed.</p>}
       </div>
       {/* Country */}
       <div className="inputContainer">
         <label htmlFor="country">Country:</label>
         <input {...register('country', { required: true, pattern: /^[A-Za-z\s]+$/ })} />
-        {errors.country && <p className="errorText">This field is required , Only letters and spaces are allowed and the first letter better in Uppercase.</p>}
+        {errors.country && <p className="errorText">This field is required , Only letters and spaces are allowed.</p>}
       </div>
       {/* Img's URL */}
       <div className="inputContainer">

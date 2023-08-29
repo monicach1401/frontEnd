@@ -108,8 +108,9 @@
   flex-direction: column;
   width: 350px; /* Ajusta el ancho según tus necesidades */
   margin: auto; /* Centrar el formulario en el medio de la página */
-  background-color: lightgrey;
-  border-radius: 30px;
+  background-color:lightgray;
+ border-bottom-right-radius: 20px;
+ border-top-left-radius: 20px;
 }
 
 .inputContainer {
@@ -133,13 +134,13 @@ label {
 .myButton1{
   margin-top: 10px;
   margin-right: 10px;
-  margin-left: 80px;
+  margin-left: 90px;
   width: 150px;
 }
 .myButton2{
   margin-top: 10px;
   margin-right: 10px;
-  margin-left: 80px;
+  margin-left: 100px;
   margin-bottom: 10px;
   width: 150px;
 }

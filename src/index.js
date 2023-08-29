@@ -1,18 +1,32 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+//import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+// Redux
+import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import { cityReducer } from './store/reducers/cityReducer';
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+/* Pasamos nuestro reductor raíz a la función createStore de Redux, la cual devuelve un objeto de almacenamiento.
+Luego, pasamos este objeto al componente Provider de react-redux, 
+que se renderiza en la parte superior de nuestro árbol de componentes. 
+Esto asegura que cada vez que nos conectemos a Redux en nuestra aplicación, 
+el almacenamiento esté disponible para nuestros componentes.*/
+
+const store = createStore(
+  cityReducer,
+  composeWithDevTools(applyMiddleware(thunk))
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
