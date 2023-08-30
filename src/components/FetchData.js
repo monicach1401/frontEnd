@@ -4,14 +4,15 @@ import Button from '@mui/material/Button';// Importa el componente Button de Mat
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';// Importa el icono de Material-UI
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import {fetchCities} from '../store/actions/cityActions';
+import { cityAction } from '../store/actions/cityActions';
 import { connect } from 'react-redux';
 
 
 
 
- const FetchData = (props) => {
-  console.log('estoy en fetchdata y las props son:',props)
+const FetchData = (props) => {
+  console.log('Estoy en FetchData y lo que tenemos en props es:',props)
+  // en props tenemos cities:Array , cityAction que es nuestra action para buscar las ciudades
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -32,17 +33,15 @@ import { connect } from 'react-redux';
   }
 
   useEffect(() => {
-    props.fetchCities(); // Utiliza la acción desde las propiedades
-    console.log('estoy en useEffect y las props son:',props)
+    props.cityAction(); // Utiliza la acción desde las propiedades
   }, []);
 
   // Función que muestra en una lista de cards de las ciudades de la base de datos. Si el usuario no introduce nada las muestra todas y sino filtra por el 
   // valor introducido 
   const ShowCities = () => {
-    console.log('estoy en la funcion showcities:',props.cities);
     /* filteredCities una nueva lista que contiene solo las ciudades que coinciden con el valor del filtro. 
-    La función includes se utiliza para verificar si el nombre o el país de una ciudad incluyen el valor del filtro,
-    y se compara en minúsculas para hacer la comparación insensible a mayúsculas y minúsculas. */
+La función includes se utiliza para verificar si el nombre o el país de una ciudad incluyen el valor del filtro,
+y se compara en minúsculas para hacer la comparación insensible a mayúsculas y minúsculas. */
     const filteredCities = props.cities.filter(city => {
       return city.name.toLowerCase().includes(citySelected.toLowerCase()) ||
         city.country.toLowerCase().includes(citySelected.toLowerCase());
@@ -60,7 +59,7 @@ import { connect } from 'react-redux';
     ));
   };
 
- 
+
 
   return (
     <>
@@ -99,21 +98,21 @@ import { connect } from 'react-redux';
  Esto permite que el componente acceda a los datos almacenados en el estado global de Redux sin necesidad de pasar los datos manualmente como propiedades 
  descendentes desde el componente padre. */
 const mapStateToProps = (state) => {
+  console.log('Estoy en mapStateToProps y lo que tenemos en state es:',state)
   return {
-     cities: state.cities
+    cities: state.cities
   };
 };
 
 /*mapDispatchToProps es una función que se utiliza en Redux para definir funciones que actúan como acciones (actions) en un componente de React. 
 Estas funciones se pueden llamar dentro del componente para despachar acciones al store de Redux.
-En nuestro caso define una propiedad fetchCities que se mapea a la función fetchCities de las acciones. En resumen, mapDispatchToProps es una función 
-que permite mapear funciones de acciones al componente de React, lo que facilita la interacción del componente con el store de Redux mediante la despacho de acciones.*/
+*/
 const mapDispatchToProps = {
-  fetchCities 
+  cityAction
 }
 
 /*connect() se utiliza para conectar esta función con MyComponent.
-Como resultado, el componente tiene acceso a props.fetchCities y puede llamarla para despachar la acción fetchCities al store de Redux. */
+Como resultado, el componente tiene acceso a props.cityAction y puede llamarla para despachar la acción cityAction al store de Redux. */
 const ConnectedFetchData = connect(mapStateToProps, mapDispatchToProps)(FetchData);
 
 export default ConnectedFetchData;
