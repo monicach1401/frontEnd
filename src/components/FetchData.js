@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import { NewCityForm } from './NewCityForm';// Formulario de añadir nueva Ciudad
 import Button from '@mui/material/Button';// Importa el componente Button de Material-UI
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';// Importa el icono de Material-UI
-import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { cityAction } from '../store/actions/cityActions';
 import { connect } from 'react-redux';
-import { Itinerary } from './Itinerary';
+import Itinerary  from './Itinerary';
 
 
 
 const FetchData = (props) => {
-  console.log('Estoy en FetchData y lo que tenemos en props es:', props)
+  console.log('Estoy en FETCHDATA""" y lo que tenemos en props es:', props)
   // en props tenemos cities:Array y openItinerary
-  const location = useLocation();
+
   const navigate = useNavigate();
 
   //Función para volver atrás
@@ -26,7 +25,7 @@ const FetchData = (props) => {
   const [showNewCityForm, setShowNewCityForm] = useState(false); //  estado para controlar la visibilidad del formulario
   const [showItinerary, setShowItinerary] = useState(false); // estado para mostrar el itinerario
   const [showCityList, setShowCityList] = useState(true);// estado para mostrar la lista de ciudades
-  const [selectedCityForItinerary,setSelectedCityForItinerary]=useState("");// estado para saber que ciudad se ha elegido
+  const [selectedCityForItinerary, setSelectedCityForItinerary] = useState("");// estado para saber que ciudad se ha elegido
 
   // Función que permite guardar en la variable de estado City el valor introducido por el usuario
   const selectCity = (citySelected) => {
@@ -64,7 +63,6 @@ const FetchData = (props) => {
 
 
   const handleCityClick = (city) => {
-    console.log('estoy en handleCityClick y la city es', city);
     setSelectedCityForItinerary(city); // Guardar la ciudad seleccionada
     setShowItinerary(true); // Mostrar el itinerario
     setShowNewCityForm(false); // Se oculta el formulario de NewCity
@@ -87,7 +85,7 @@ const FetchData = (props) => {
 
       {/* Renderizamos el formulario si showNewCityForm es true , showItinerary es false y cuando los datos se envien se llamará a la función onSucess que ocultará el formulario*/}
       {showNewCityForm && !showItinerary && <NewCityForm hideForm={() => setShowNewCityForm(false)} />}
-
+      
       {/* Renderizamos el componente Itinerary si showItinerary es true y hay una ciudad seleccionada*/}
       {showItinerary && selectedCityForItinerary && (
         <>
@@ -102,13 +100,14 @@ const FetchData = (props) => {
         </div>
       )}
 
-      <div style={{ marginLeft: '20px', marginTop: '20px' }}>
+      <div style={{ marginLeft: '20px', marginTop: '100px' }}>
         <Button
           variant="contained"
           color="success"
           startIcon={<ArrowBackIosNewIcon />}
           onClick={goBack}
         >
+          Home
         </Button>
       </div>
     </>
@@ -119,6 +118,7 @@ const FetchData = (props) => {
  Esto permite que el componente acceda a los datos almacenados en el estado global de Redux sin necesidad de pasar los datos manualmente como propiedades 
  descendentes desde el componente padre. */
 const mapStateToProps = (state) => {
+  console.log('estoy en mapStateToProps de FEtchdata state es:', state) // nos interesa solo cities
   return {
     cities: state.cities,
   };
