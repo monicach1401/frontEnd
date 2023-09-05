@@ -6,13 +6,13 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { cityAction } from '../store/actions/cityActions';
 import { connect } from 'react-redux';
-
+import { Itinerary } from './Itinerary';
 
 
 
 const FetchData = (props) => {
-  console.log('Estoy en FetchData y lo que tenemos en props es:',props)
-  // en props tenemos cities:Array , cityAction que es nuestra action para buscar las ciudades
+  console.log('Estoy en FetchData y lo que tenemos en props es:', props)
+  // en props tenemos cities:Array y openItinerary
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -22,10 +22,11 @@ const FetchData = (props) => {
   }
 
   // variables de Estado
-  //const [cities, setCities] = useState([]); // estado para mostrar las ciudades de la base de datos
   const [citySelected, setCitySelected] = useState(""); // estado que nos permmite guardar el valor introducido por el usuario en el input
-  const [showNewCityForm, setShowNewCityForm] = useState(false); // Agregamos un estado para controlar la visibilidad del formulario
-
+  const [showNewCityForm, setShowNewCityForm] = useState(false); //  estado para controlar la visibilidad del formulario
+  const [showItinerary, setShowItinerary] = useState(false); // estado para mostrar el itinerario
+  const [showCityList, setShowCityList] = useState(true);// estado para mostrar la lista de ciudades
+  const [selectedCityForItinerary,setSelectedCityForItinerary]=useState("");// estado para saber que ciudad se ha elegido
 
   // Función que permite guardar en la variable de estado City el valor introducido por el usuario
   const selectCity = (citySelected) => {
@@ -36,21 +37,23 @@ const FetchData = (props) => {
     props.cityAction(); // Utiliza la acción desde las propiedades
   }, []);
 
+
   // Función que muestra en una lista de cards de las ciudades de la base de datos. Si el usuario no introduce nada las muestra todas y sino filtra por el 
   // valor introducido 
+
   const ShowCities = () => {
-    /* filteredCities una nueva lista que contiene solo las ciudades que coinciden con el valor del filtro. 
-La función includes se utiliza para verificar si el nombre o el país de una ciudad incluyen el valor del filtro,
-y se compara en minúsculas para hacer la comparación insensible a mayúsculas y minúsculas. */
-    const filteredCities = props.cities.filter(city => {
+    console.log('estoy en SHOWCITIES y props.cities es:', props.cities)
+    /* ahora en props.cities tenemos un objeto con una propiedad cities que contiene el array de ciudades
+     accedemos  a props.cities.cities para obtener el arreglo de ciudades real.  */
+    const cityData = props.cities.cities; // ahora las cities es un array dentro de un objecto
+    const filteredCities = cityData.filter(city => {
       return city.name.toLowerCase().includes(citySelected.toLowerCase()) ||
         city.country.toLowerCase().includes(citySelected.toLowerCase());
     });
-
     return filteredCities.map((city) => (
       <li className="listCities" key={city._id}>
         <div className="card ">
-          <div className="card-body">
+          <div className="card-body" onClick={() => handleCityClick(city)}>
             <h6 className="card-text"> {city.name}, {city.country}  </h6>
           </div>
           <img src={city.img} alt="..." style={{ maxWidth: '100%', maxHeight: '300px' }} />
@@ -60,6 +63,13 @@ y se compara en minúsculas para hacer la comparación insensible a mayúsculas 
   };
 
 
+  const handleCityClick = (city) => {
+    console.log('estoy en handleCityClick y la city es', city);
+    setSelectedCityForItinerary(city); // Guardar la ciudad seleccionada
+    setShowItinerary(true); // Mostrar el itinerario
+    setShowNewCityForm(false); // Se oculta el formulario de NewCity
+    setShowCityList(false); // Se oculta la lista de ciudades
+  };
 
   return (
     <>
@@ -74,12 +84,23 @@ y se compara en minúsculas para hacer la comparación insensible a mayúsculas 
         />
         <button className="myButton" onClick={() => setShowNewCityForm(true)}>Add New City</button> {/* Modificamos el onClick para cambiar el estado */}
       </div>
-      {/* Renderizamos el formulario si showNewCityForm es true y cuando los datos se envien se llamará a la función onSucess que ocultará el formulario*/}
-      {showNewCityForm && <NewCityForm hideForm={() => setShowNewCityForm(false)} />}
 
-      <div>
-        <ul>{ShowCities()}</ul>
-      </div>
+      {/* Renderizamos el formulario si showNewCityForm es true , showItinerary es false y cuando los datos se envien se llamará a la función onSucess que ocultará el formulario*/}
+      {showNewCityForm && !showItinerary && <NewCityForm hideForm={() => setShowNewCityForm(false)} />}
+
+      {/* Renderizamos el componente Itinerary si showItinerary es true y hay una ciudad seleccionada*/}
+      {showItinerary && selectedCityForItinerary && (
+        <>
+          <Itinerary city={selectedCityForItinerary} />
+        </>
+      )}
+
+      {/* Renderiza la lista de ciudades solo si showCityList es true */}
+      {showCityList && (
+        <div>
+          <ul>{ShowCities()}</ul>
+        </div>
+      )}
 
       <div style={{ marginLeft: '20px', marginTop: '20px' }}>
         <Button
@@ -98,9 +119,8 @@ y se compara en minúsculas para hacer la comparación insensible a mayúsculas 
  Esto permite que el componente acceda a los datos almacenados en el estado global de Redux sin necesidad de pasar los datos manualmente como propiedades 
  descendentes desde el componente padre. */
 const mapStateToProps = (state) => {
-  console.log('Estoy en mapStateToProps y lo que tenemos en state es:',state)
   return {
-    cities: state.cities
+    cities: state.cities,
   };
 };
 
@@ -108,7 +128,7 @@ const mapStateToProps = (state) => {
 Estas funciones se pueden llamar dentro del componente para despachar acciones al store de Redux.
 */
 const mapDispatchToProps = {
-  cityAction
+  cityAction,
 }
 
 /*connect() se utiliza para conectar esta función con MyComponent.

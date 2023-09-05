@@ -4,11 +4,8 @@ CityAction nos devuelve un dispactch con un Type y un payload.
 Aqui miraramos que type es.
 Si hay ido todo bien, en cities ponemos el resultado de action.payload 
 */
+import {initialState} from './initialState'
 
-const initialState = {
-  cities: [], // Inicializa el estado cities como un arreglo vacío
-  // ...otros estados si los tienes
-};
 export const cityReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_CITIES_SUCCESS':
@@ -16,12 +13,10 @@ export const cityReducer = (state = initialState, action) => {
         ...state,
         cities: action.payload, // Actualiza el estado cities con los datos recibidos
       };
-    // ...otros casos de acción si los tienes
     default:
       return state;
   }
 };
-
 
 
 

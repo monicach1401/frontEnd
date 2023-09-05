@@ -5,6 +5,7 @@ Estas acciones son despachadas por componentes de la aplicación para notificar 
 En nuestro caso se despacha en UseEffect 
 */
 
+// Nos busca todas las ciudades 
 export const cityAction = () => {
   return (dispatch) => {
     fetch("http://localhost:5000/cities/all")
@@ -17,3 +18,4 @@ export const cityAction = () => {
       });
   };
 };
+

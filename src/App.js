@@ -1,8 +1,6 @@
 import './App.css';
 import { Landing } from './components/Landing';
-import { FetchData } from './components/FetchData';
 import ConnectedFetchData from './components/FetchData';
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
