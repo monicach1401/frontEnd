@@ -1,41 +1,37 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { loadItinerariesByCity } from '../store/actions/ItinerariesByCity';
-import Button from '@mui/material/Button';// Importa el componente Button de Material-UI
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';// Importa el icono de Material-UI
 
 
 const Itinerary = ({ city, itineraries, loadItinerariesByCity }) => {
-  
+
+
   useEffect(() => {
     // Cargar los itinerarios de la ciudad seleccionada cuando el componente se monta
     loadItinerariesByCity(city.name);
-    // city lo pongo en dependencias para que se actualize cada vez que seleccionamos una ciudad y loadItinerariesByCity significa que este efecto depende de la función loadItinerariesByCity 
+    // city y loadItinerariesByCity porque quiero que se ejecute la primera vez y cada bez que seleccionemos una ciudad 
   }, [city, loadItinerariesByCity]);
 
-  console.log('estoy en ITINERARY  y props.itineraries es:', itineraries)
   const itinerariesData = itineraries.itineraries; // ahora las cities es un array dentro de un objecto
-  console.log(itinerariesData)
   return (
     <>
       <div>
         <h2 className='itineraries'>Itineraries for {city.name}, {city.country}</h2>
         <ul>
           {itinerariesData.map((itinerary) => (
-             <li key={itinerary.id}>
-             <strong>TITLE: {itinerary.title}</strong>
-             <div>
-              <p></p>
-               <p>Duration: {itinerary.duration}</p>
-               <p>Price: {itinerary.price}</p>
-               <p>Rating: {itinerary.rating}</p>
-               <p>ProfilePicture: <img src={itinerary.profilePicture} alt="..." style={{ maxWidth: '100%', maxHeight: '250px' }}></img></p>
-             </div>
-           </li>
-         ))}
+            <li key={itinerary.id}>
+              <strong>TITLE: {itinerary.title}</strong>
+              <div>
+                <p></p>
+                <p>Duration: {itinerary.duration}</p>
+                <p>Price: {itinerary.price}</p>
+                <p>Rating: {itinerary.rating}</p>
+                <p>ProfilePicture: <img src={itinerary.profilePicture} alt="..." style={{ maxWidth: '95%', maxHeight: '240px' }}></img></p>
+              </div>
+            </li>
+          ))}
         </ul>
       </div>
- 
     </>
   );
 };
