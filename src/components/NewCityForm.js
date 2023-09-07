@@ -56,19 +56,19 @@ export const NewCityForm = ({ hideForm }) => {
       {/* Name */}
       <div className="inputContainer">
         <label htmlFor="name">Name:</label>
-        <input {...register('name', { required: true, pattern: /^[A-Za-z\s]+$/ })} />
+        <input {...register('name', { required: true, pattern: /^[A-Za-z\s]+$/ })} />{/* Letras y espacios */}
         {errors.name && <p className="errorText">This field is required , Only letters and spaces are allowed.</p>}
       </div>
       {/* Country */}
       <div className="inputContainer">
         <label htmlFor="country">Country:</label>
-        <input {...register('country', { required: true, pattern: /^[A-Za-z\s]+$/ })} />
+        <input {...register('country', { required: true, pattern: /^[A-Za-z\s]+$/ })} />{/* Letras y espacios */}
         {errors.country && <p className="errorText">This field is required , Only letters and spaces are allowed.</p>}
       </div>
       {/* Img's URL */}
       <div className="inputContainer">
         <label htmlFor="img">URL:</label>
-        <input {...register('img', { required: true, pattern: /^(ftp|http|https):\/\/[^ "]+$/ })} />
+        <input {...register('img', { required: true, pattern: /^(ftp|http|https):\/\/[^ "]+$/ })} />{/* Formato url */}
         {errors.img && <p className="errorText">This field is required.Incorrect format</p>}
       </div>
 

@@ -109,8 +109,9 @@
   width: 350px; /* Ajusta el ancho según tus necesidades */
   margin: auto; /* Centrar el formulario en el medio de la página */
   background-color:lightgray;
- border-bottom-right-radius: 20px;
- border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  margin-top: 20px;
 }
 
 .inputContainer {
@@ -148,4 +149,10 @@ label {
   margin-top: 30px;
   margin-left: 20px;
   color:red;
+}
+.noItinerarys{
+  margin-top: 30px;
+  margin-left: 30px;
+  font-size: medium;
+  color:darkgreen;
 }

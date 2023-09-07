@@ -26,6 +26,7 @@ const FetchData = (props) => {
   const [showItineraryData, setShowItineraryData] = useState(false); // estado para mostrar los datos del itinerario de una ciudad
   const [showCityList, setShowCityList] = useState(true);// estado para mostrar la lista de ciudades
   const [selectedCityForItinerary, setSelectedCityForItinerary] = useState("");// estado para saber que ciudad se ha elegido
+ 
 
   // Función que permite guardar en la variable de estado City el valor introducido por el usuario
   const selectCity = (citySelected) => {
@@ -83,7 +84,7 @@ const FetchData = (props) => {
             value={citySelected}
             onChange={e => selectCity(e.target.value)}
           />
-          <button className="myButton" onClick={() => setShowNewCityForm(true)}>Add New City</button> {/* Modificamos el onClick para cambiar el estado */}
+          <button className="myButton" onClick={() => setShowNewCityForm(true)}>Add New City</button> {/* cambiamos estado a true para mostrar el formulario */}
         </div>
       )}
 
@@ -106,7 +107,7 @@ const FetchData = (props) => {
                 setShowCityList(true); // volvemos a mostrar la lista de ciudades
                 setShowChooseCity(true); // volvemos a mostrar el formulario de Choose a City
               }}
-            >
+            > List of cities
             </Button>
           </div>
 
@@ -122,7 +123,7 @@ const FetchData = (props) => {
       )}
 
       {/* siempre mostramos el botón de Home */}
-      <div style={{ marginLeft: '140px', marginTop: '50px' }}>
+      <div style={{ marginLeft: '30px', marginTop: '50px' }}>
         <Button
           variant="contained"
           color="success"
@@ -134,7 +135,7 @@ const FetchData = (props) => {
     </>
   );
 };
-
+//---------- CONECTAMOS CON REDUX-----------------------------------------------------
 /* mapStateToProps es una forma de obtener una porción específica del estado de Redux y pasarla como propiedades a un componente.
  Esto permite que el componente acceda a los datos almacenados en el estado global de Redux sin necesidad de pasar los datos manualmente como propiedades 
  descendentes desde el componente padre. */
