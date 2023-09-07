@@ -1,42 +1,44 @@
-.Myitinary{
+.Myitinary {
   margin-top: 30px;
   margin-left: 80px;
 }
 
 .description {
-  text-align:center;
+  text-align: center;
   margin-bottom: 20px;
   margin-top: 40px;
   margin-left: 20px;
   margin-right: 10px;
-  font-family:cursive
+  font-family: cursive
 }
-.description p{
+
+.description p {
   font-size: 15px;
 }
 
 .start-browsing {
   padding-top: 10px;
   padding-bottom: 10px;
-  width:250px;
+  width: 250px;
   margin-top: 50px;
   margin-left: 70px;
   margin-right: 40px;
-  background-color:bisque;
-  }
+  background-color: bisque;
+}
 
 .start-browsing h6 {
-   color:red;
-   text-align: center;
-   font-size: large;
+  color: red;
+  text-align: center;
+  font-size: large;
 }
-.start-browsing img{
+
+.start-browsing img {
   margin-left: 85px;
 }
 
 .options {
-  border-style:groove;
-  border-color:gray;
+  border-style: groove;
+  border-color: gray;
   border-start-start-radius: 30px;
   text-align: center;
   margin-left: 10px;
@@ -45,21 +47,20 @@
   padding-bottom: 10px;
   margin-bottom: 50px;
   margin-top: 60px;
-  font-family:cursive
-  
+  font-family: cursive
 }
-.options h5{
+
+.options h5 {
   font-size: 17px;
 }
 
 .home-icon {
- /* align-self: flex-end;*/
   margin-top: 80px;
   margin-right: 100px;
   margin-left: 160px;
 }
 
-/* Filter */
+/* Filter de la ciudad */
 .filter-container {
   text-align: center;
   padding: 15px;
@@ -72,6 +73,7 @@
 .filter-title {
   font-size: 24px;
   margin-bottom: 10px;
+  color:chocolate;
 }
 
 .filter-input {
@@ -82,15 +84,15 @@
 }
 
 /*Lista de ciudades*/
-.listCities{
+.listCities {
   list-style-type: none;
-  margin-right:20px;
+  margin-right: 20px;
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
 /*New City*/
-.NewCity{
+.NewCity {
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 10px;
@@ -99,16 +101,17 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 30px;
-  background-color:beige
+  background-color: beige
 }
 
 /*Formulario Add city*/
 .formContainer {
   display: flex;
   flex-direction: column;
-  width: 350px; /* Ajusta el ancho según tus necesidades */
-  margin: auto; /* Centrar el formulario en el medio de la página */
-  background-color:lightgray;
+  width: 350px;
+  margin: auto;
+  /* Centrar el formulario en el medio de la página */
+  background-color: lightgray;
   border-bottom-right-radius: 20px;
   border-top-left-radius: 20px;
   margin-top: 20px;
@@ -132,27 +135,63 @@ label {
   margin-top: 5px;
   font-size: 12px;
 }
-.myButton1{
+/* Botón Add New City*/
+.myButton{
+  margin-top: 10px;
+}
+.myButton1 {
   margin-top: 10px;
   margin-right: 10px;
   margin-left: 90px;
   width: 150px;
 }
-.myButton2{
+
+.myButton2 {
   margin-top: 10px;
   margin-right: 10px;
   margin-left: 100px;
   margin-bottom: 10px;
   width: 150px;
 }
-.itineraries{
+
+.itineraries {
   margin-top: 30px;
   margin-left: 20px;
-  color:red;
+  margin-right: 20px;
+  color:chocolate;
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  margin-bottom: 5px;
+  font-size: 24px;
+  margin-top: 10px;
 }
-.noItinerarys{
+
+.noItinerarys {
   margin-top: 30px;
   margin-left: 30px;
   font-size: medium;
-  color:darkgreen;
+  color: darkgreen;
+}
+
+/* barra inferior de navegacion de iconos*/
+.Container-Icons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Agregado para centrar verticalmente los iconos */
+  border-radius: 3px;
+}
+
+.Container-Icons a {
+  color: black;
+  padding-left: 40px;
 }

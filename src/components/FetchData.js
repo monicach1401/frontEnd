@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { NewCityForm } from './NewCityForm';// Formulario de añadir nueva Ciudad
 import Button from '@mui/material/Button';// Importa el componente Button de Material-UI
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';// Importa el icono de Material-UI
+import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
 import { cityAction } from '../store/actions/cityActions';
 import { connect } from 'react-redux';
 import Itinerary from './Itinerary';
+
 
 
 
@@ -26,25 +28,24 @@ const FetchData = (props) => {
   const [showItineraryData, setShowItineraryData] = useState(false); // estado para mostrar los datos del itinerario de una ciudad
   const [showCityList, setShowCityList] = useState(true);// estado para mostrar la lista de ciudades
   const [selectedCityForItinerary, setSelectedCityForItinerary] = useState("");// estado para saber que ciudad se ha elegido
- 
+
 
   // Función que permite guardar en la variable de estado City el valor introducido por el usuario
   const selectCity = (citySelected) => {
     setCitySelected(citySelected);
   }
 
+  // Action del backend que se ejectuta al renderizar el componente 
   useEffect(() => {
-    props.cityAction(); // Utiliza la acción desde las propiedades
+    props.cityAction();
   }, []);
 
 
-  // Función que muestra en una lista de cards de las ciudades de la base de datos. Si el usuario no introduce nada las muestra todas y sino filtra por el 
-  // valor introducido 
-
+  // -----Función que muestra en una lista de cards de las ciudades de la base de datos. Si el usuario no introduce nada las muestra todas 
+  // y sino filtra por el valor introducido 
   const ShowCities = () => {
-    console.log('estoy en SHOWCITIES y props.cities es:', props.cities)
     /* ahora en props.cities tenemos un objeto con una propiedad cities que contiene el array de ciudades
-     accedemos  a props.cities.cities para obtener el arreglo de ciudades real.  */
+    accedemos  a props.cities.cities para obtener el arreglo de ciudades real.  */
     const cityData = props.cities.cities; // ahora las cities es un array dentro de un objecto
     const filteredCities = cityData.filter(city => {
       return city.name.toLowerCase().includes(citySelected.toLowerCase()) ||
@@ -62,7 +63,7 @@ const FetchData = (props) => {
     ));
   };
 
-
+  /*----- Función que se ejecuta el click en una imgen de la ciudad para mostrar sus itinerarios ------------- */
   const handleCityClick = (city) => {
     setShowChooseCity(false); // ocultamos el formulario de Choose a City
     setSelectedCityForItinerary(city); // Guardar la ciudad seleccionada
@@ -72,12 +73,26 @@ const FetchData = (props) => {
     setShowCityList(false); // Se oculta la lista de ciudades
   };
 
+  /*----- Función que se ejecuta el click en el icono "<" para volver a mostrar el listado de ciudades ------------- */
+  const goBackToListOfCities = () => {
+    if (showItinerary) {
+      // Si se muestran los itinerarios, volvemos al listado de ciudades
+      setShowItinerary(false);
+      setShowItineraryData(false);
+      setShowCityList(true);
+      setShowChooseCity(true);
+    } else {
+      // Si se muestra la lista de ciudades, se comporta como el botón de Home
+      navigate("/");
+    }
+  };
+
   return (
     <>
       {showChooseCity && (
         <div className="filter-container">
           <h1 className="filter-title">Choose a City</h1>
-          {/* ACtualizamos la variable selectCity con el valor introducido por el usuario en el input*/}
+          {/* Actualizamos la variable selectCity con el valor introducido por el usuario en el input*/}
           <input
             type="text"
             className="filter-input"
@@ -96,22 +111,6 @@ const FetchData = (props) => {
       {showItinerary && selectedCityForItinerary && showItineraryData && (
         <>
           <Itinerary city={selectedCityForItinerary} />
-          {/* solo mostramos el botón para volver otra vez a FetchData cuando esta visible el componente Itinerary*/}
-          <div style={{ marginLeft: '30px', marginTop: '50px' }}>
-            <Button
-              variant="contained"
-              color="success"
-              startIcon={<ArrowBackIosNewIcon />}
-              onClick={() => {
-                setShowItineraryData(false) // ocultamos el itinerary
-                setShowCityList(true); // volvemos a mostrar la lista de ciudades
-                setShowChooseCity(true); // volvemos a mostrar el formulario de Choose a City
-              }}
-            > List of cities
-            </Button>
-          </div>
-
-
         </>
       )}
 
@@ -122,16 +121,15 @@ const FetchData = (props) => {
         </div>
       )}
 
-      {/* siempre mostramos el botón de Home */}
-      <div style={{ marginLeft: '30px', marginTop: '50px' }}>
-        <Button
-          variant="contained"
-          color="success"
-          startIcon={<ArrowBackIosNewIcon />}
-          onClick={goBack}
-        > Home
-        </Button>
-      </div>
+      {/* siempre mostramos esta section que es la barra inferior con los iconos */}
+      <section className="Container-Icons">
+        <a href="#" onClick={goBack}>
+          <HomeIcon />
+        </a>
+        <a href="#" onClick={goBackToListOfCities}>
+          <ArrowBackIosNewIcon />
+        </a>
+      </section>
     </>
   );
 };
@@ -140,7 +138,6 @@ const FetchData = (props) => {
  Esto permite que el componente acceda a los datos almacenados en el estado global de Redux sin necesidad de pasar los datos manualmente como propiedades 
  descendentes desde el componente padre. */
 const mapStateToProps = (state) => {
-  console.log('estoy en mapStateToProps de FEtchdata state es:', state) // nos interesa solo cities
   return {
     cities: state.cities,
   };

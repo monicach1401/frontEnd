@@ -6,20 +6,22 @@ import { NewItineraryForm } from './NewItineraryForm';
 
 const Itinerary = ({ city, itineraries, loadItinerariesByCity }) => {
 
-  const [showNewItineraryForm, setShowNewItineraryForm] = useState(false); //  estado para controlar la visibilidad del formulario de NewItinerary
-  
-  useEffect(() => {
-    // Cargar los itinerarios de la ciudad seleccionada cuando el componente se monta
-    loadItinerariesByCity(city.name);
-    // city y loadItinerariesByCity porque quiero que se ejecute la primera vez y cada bez que seleccionemos una ciudad 
-  }, [city, loadItinerariesByCity]);
+  //  Estado para controlar la visibilidad del formulario de NewItinerary
+  const [showNewItineraryForm, setShowNewItineraryForm] = useState(false);
 
-  const itinerariesData = itineraries.itineraries; // ahora las cities es un array dentro de un objecto
+  // Cargamos los itinerarios de la ciudad seleccionada cuando el componente se monta y cuando seleccionamos una ciudad
+  useEffect(() => {
+    loadItinerariesByCity(city.name);
+  }, [city, loadItinerariesByCity]);   // city y loadItinerariesByCity porque quiero que se ejecute la primera vez y cada bez que seleccionemos una ciudad 
+
+  // ahora las cities es un array dentro de un objecto
+  const itinerariesData = itineraries.itineraries;
+
   return (
     <>
       <div>
         <h2 className='itineraries'>Itineraries for {city.name}, {city.country}</h2>
-        {itinerariesData.length === 0
+        {itinerariesData.length === 0 // no tenemos itinerarios
           ? (
             <div className='noItinerarys'>
               <p >There are no itineraries created for this city. If you want to add one, click the button.</p>
@@ -29,7 +31,7 @@ const Itinerary = ({ city, itineraries, loadItinerariesByCity }) => {
           : (
             <ul>
               {itinerariesData.map((itinerary) => (
-                <li key={itinerary.id}>
+                <li key={itinerary._id}>
                   <strong>TITLE: {itinerary.title}</strong>
                   <div>
                     <p></p>
@@ -44,16 +46,17 @@ const Itinerary = ({ city, itineraries, loadItinerariesByCity }) => {
           )
         }
       </div>
-        {/* Renderizamos el formulario si showNewCityForm es true , showItinerary es false y cuando los datos se envien se llamará a la función onSucess que ocultará el formulario*/}
-        {showNewItineraryForm && <NewItineraryForm hideForm={() => setShowNewItineraryForm(false)} />}
+      {/* Renderizamos el formulario si showNewCityForm es true , showItinerary es false y cuando los datos se envien se llamará a la función onSucess que ocultará el formulario*/}
+      {showNewItineraryForm && <NewItineraryForm hideForm={() => setShowNewItineraryForm(false)} />}
 
     </>
   );
 };
+
+/*---- Connect con REDUX ------------------ */
 /* Obtenemos una parte del state y se lo pasamos como props al mi componente*/
 const mapStateToProps = (state) => {
-  console.log('estoy en mapStateToProps de Itinerary state es:', state) // nos interesa solo itineraries
-  return {
+   return {
     itineraries: state.itineraries,
   };
 };

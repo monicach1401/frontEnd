@@ -65,19 +65,19 @@ export const NewItineraryForm = ({ hideForm }) => {
       {/* Duration */}
       <div className="inputContainer">
         <label htmlFor="duration">Duration:</label>
-        <input {...register('duration', { required: true ,pattern: /^[A-Za-z0-9]+$/})} />
+        <input {...register('duration', { required: true ,pattern: /^[A-Za-z0-9\s]+$/})} />
         {errors.duration && <p className="errorText">This field is required.Only letters and spaces and numbers are allowed.</p>}
       </div>
       {/* Price */}
       <div className="inputContainer">
         <label htmlFor="price">Price:</label>
-        <input {...register('price', { required: true ,pattern: /^[A-Za-z\s]+$/})} />
+        <input {...register('price', { required: true ,pattern:  /^[A-Za-z0-9\s€]+$/})} />
         {errors.price && <p className="errorText">This field is required. Only letters and spaces are allowed.</p>}
       </div>
       {/* Profile Picture */}
       <div className="inputContainer">
         <label htmlFor="profilePicture">Profile Picture URL:</label>
-        <input {...register('profilePicture', { required: true , pattern: /^(ftp|http|https):\/\/[^ "]+$/})} />
+        <input {...register('profilePicture', { required: true , pattern:/^(ftp|http|https):\/\/[^ "]+$/ })} />
         {errors.profilePicture && <p className="errorText">This field is required.</p>}
       </div>
       {/* Rating */}

@@ -12,27 +12,20 @@ export const NewCityForm = ({ hideForm }) => {
     formState: { errors },
   } = useForm();
 
-  // ----------- Creamos un objeto tal cual es el modelo de city
-  const [formData, setFormData] = useState({
-    name: '',
-    country: '',
-    img: ''
-  });
-
   // -----------Función para el botón de Cancel del Formulario
   const handleCancel = () => {
     hideForm(); // Llama a la función hideForm para ocultar el formulario
   };
 
   //------------- Función que añade los datos del formulario en la base de datos
-   const addCityToDatabase=(data)=>{
-     // Datos del formulario los guardo en el objecto newCityData
-     const newCityData = {
+  const addCityToDatabase = (data) => {
+    // Datos del formulario los guardo en el objecto newCityData
+    const newCityData = {
       name: data.name,
       country: data.country,
       img: data.img
     };
-  
+
     // guardo los datos en el servidor
     fetch('http://localhost:5000/cities', {
       method: 'POST',
@@ -49,14 +42,14 @@ export const NewCityForm = ({ hideForm }) => {
       .catch(error => {
         console.error(error);
       });
-   }
+  }
 
   return (
     <form className="formContainer" onSubmit={handleSubmit(addCityToDatabase)}>
       {/* Name */}
       <div className="inputContainer">
         <label htmlFor="name">Name:</label>
-        <input {...register('name', { required: true, pattern: /^[A-Za-z\s]+$/ })} />{/* Letras y espacios */}
+        <input {...register('name', { required: true,pattern: /^[A-Za-z\s]+$/ })} />{/* Letras y espacios */}
         {errors.name && <p className="errorText">This field is required , Only letters and spaces are allowed.</p>}
       </div>
       {/* Country */}
