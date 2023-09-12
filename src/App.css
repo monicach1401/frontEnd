@@ -1,64 +1,47 @@
-.Myitinary {
-  margin-top: 30px;
-  margin-left: 80px;
+/* Landing */
+.container-landing {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url('../src/images/travel.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .description {
+  position: fixed;
   text-align: center;
-  margin-bottom: 20px;
-  margin-top: 40px;
+  margin-top: 250px;
   margin-left: 20px;
   margin-right: 10px;
-  font-family: cursive
+  font-family: cursive;
 }
 
 .description p {
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .start-browsing {
+  position: fixed;
   padding-top: 10px;
   padding-bottom: 10px;
   width: 250px;
-  margin-top: 50px;
+  margin-top: 350px;
   margin-left: 70px;
   margin-right: 40px;
-  background-color: bisque;
 }
 
 .start-browsing h6 {
-  color: red;
   text-align: center;
-  font-size: large;
+  font-size: x-large;
 }
 
 .start-browsing img {
   margin-left: 85px;
 }
 
-.options {
-  border-style: groove;
-  border-color: gray;
-  border-start-start-radius: 30px;
-  text-align: center;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 50px;
-  margin-top: 60px;
-  font-family: cursive
-}
 
-.options h5 {
-  font-size: 17px;
-}
-
-.home-icon {
-  margin-top: 80px;
-  margin-right: 100px;
-  margin-left: 160px;
-}
 
 /* Filter de la ciudad */
 .filter-container {
@@ -67,13 +50,11 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
-  margin-bottom: 5px;
 }
 
 .filter-title {
   font-size: 24px;
-  margin-bottom: 10px;
-  color:chocolate;
+  color: rgb(14, 4, 150);
 }
 
 .filter-input {
@@ -87,14 +68,13 @@
 .listCities {
   list-style-type: none;
   margin-right: 20px;
-  margin-bottom: 10px;
   margin-top: 10px;
+  margin-bottom: 0px;
 }
 
 /*New City*/
 .NewCity {
   margin-top: 10px;
-  margin-bottom: 10px;
   margin-left: 10px;
   margin-right: 10px;
   text-align: center;
@@ -121,7 +101,6 @@
   display: flex;
   flex-direction: column;
   width: 320px;
-  margin-bottom: 10px;
   margin-left: 20px;
 }
 
@@ -135,37 +114,43 @@ label {
   margin-top: 5px;
   font-size: 12px;
 }
+
 /* Botón Add New City*/
-.myButton{
+.myButton {
   margin-top: 10px;
-}
-.myButton1 {
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-left: 90px;
-  width: 150px;
+  padding: 0
 }
 
 .myButton2 {
   margin-top: 10px;
   margin-right: 10px;
-  margin-left: 100px;
+  margin-left: 90px;
   margin-bottom: 10px;
-  width: 150px;
+  padding: 0;
+  gap: 10px;
+  /* Espacio entre los botones */
+  display: inline-flex;
+  /* aparecen uno al lado del otro*/
+
 }
 
 .itineraries {
   margin-top: 30px;
-  margin-left: 20px;
-  margin-right: 20px;
-  color:chocolate;
+  margin-left: 8px;
+  margin-right: 8px;
+  color: rgb(14, 4, 150);
   text-align: center;
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
-  margin-bottom: 5px;
   font-size: 24px;
+  margin-top: 10px;
+}
+
+.listofItineraries {
+  list-style-type: none;
+  margin-right: 35px;
   margin-top: 10px;
 }
 
@@ -187,11 +172,11 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Agregado para centrar verticalmente los iconos */
-  border-radius: 3px;
+  /*border-radius: 3px;*/
+  /* esto hacia que tuviera el pequeño margin inferior*/
 }
 
 .Container-Icons a {
   color: black;
-  padding-left: 40px;
+  padding-left: 35px;
 }

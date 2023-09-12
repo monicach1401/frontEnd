@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-export const NewCityForm = ({ hideForm }) => {
+export const NewCityForm = ({ hideForm, cityAction }) => {
 
   /*------------El hook "useForm" se utiliza para gestionar el estado y la validación de formularios.
    la función "register" se utiliza para registrar los campos de entrada en el formulario, y devuelve las propiedades necesarias para cada entrada.
    La función "handleSubmit" se pasa a la propiedad "onSubmit" del formulario y es responsable de manejar el envío del formulario.*/
+  
   const {
     register,
     handleSubmit,
@@ -38,6 +39,8 @@ export const NewCityForm = ({ hideForm }) => {
       .then(data => {
         hideForm(); // oculta el formulario
         console.log(data);
+        cityAction(); // volvemos a llamar a cityAcion para mostrar las ciudades una vez que añadimos una en la base de datos
+    
       })
       .catch(error => {
         console.error(error);
@@ -45,29 +48,35 @@ export const NewCityForm = ({ hideForm }) => {
   }
 
   return (
-    <form className="formContainer" onSubmit={handleSubmit(addCityToDatabase)}>
-      {/* Name */}
-      <div className="inputContainer">
-        <label htmlFor="name">Name:</label>
-        <input {...register('name', { required: true,pattern: /^[A-Za-z\s]+$/ })} />{/* Letras y espacios */}
-        {errors.name && <p className="errorText">This field is required , Only letters and spaces are allowed.</p>}
-      </div>
-      {/* Country */}
-      <div className="inputContainer">
-        <label htmlFor="country">Country:</label>
-        <input {...register('country', { required: true, pattern: /^[A-Za-z\s]+$/ })} />{/* Letras y espacios */}
-        {errors.country && <p className="errorText">This field is required , Only letters and spaces are allowed.</p>}
-      </div>
-      {/* Img's URL */}
-      <div className="inputContainer">
-        <label htmlFor="img">URL:</label>
-        <input {...register('img', { required: true, pattern: /^(ftp|http|https):\/\/[^ "]+$/ })} />{/* Formato url */}
-        {errors.img && <p className="errorText">This field is required.Incorrect format</p>}
-      </div>
+    <>
+      <form className="formContainer" onSubmit={handleSubmit(addCityToDatabase)}>
+        {/* Name */}
+        <div className="inputContainer">
+          <label htmlFor="name">Name:</label>
+          <input {...register('name', { required: true, pattern: /^[A-Za-z\s]+$/ })} />{/* Letras y espacios */}
+          {errors.name && <p className="errorText">This field is required , Only letters and spaces are allowed.</p>}
+        </div>
+        {/* Country */}
+        <div className="inputContainer">
+          <label htmlFor="country">Country:</label>
+          <input {...register('country', { required: true, pattern: /^[A-Za-z\s]+$/ })} />{/* Letras y espacios */}
+          {errors.country && <p className="errorText">This field is required , Only letters and spaces are allowed.</p>}
+        </div>
+        {/* Img's URL */}
+        <div className="inputContainer">
+          <label htmlFor="img">URL:</label>
+          <input {...register('img', { required: true, pattern: /^(ftp|http|https):\/\/[^ "]+$/ })} />{/* Formato url */}
+          {errors.img && <p className="errorText">This field is required.Incorrect format</p>}
+        </div>
+        <div className='myButton2'>
+          <button type="submit">Add City</button>
+          <button type="button" onClick={handleCancel}>Cancel</button>
+        </div>
+      </form>
 
-      <button className="myButton2" type="submit">Add City</button>
-      <button className="myButton2" type="button" onClick={handleCancel}>Cancel</button>
-    </form>
+
+
+    </>
   );
 };
 

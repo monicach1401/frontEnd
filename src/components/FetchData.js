@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { NewCityForm } from './NewCityForm';// Formulario de añadir nueva Ciudad
-import Button from '@mui/material/Button';// Importa el componente Button de Material-UI
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';// Importa el icono de Material-UI
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
@@ -105,31 +104,38 @@ const FetchData = (props) => {
 
 
       {/* Renderizamos el formulario si showNewCityForm es true , showItinerary es false y cuando los datos se envien se llamará a la función onSucess que ocultará el formulario*/}
-      {showNewCityForm && !showItinerary && <NewCityForm hideForm={() => setShowNewCityForm(false)} />}
+      {showNewCityForm && !showItinerary &&
+        <NewCityForm
+          hideForm={() => setShowNewCityForm(false)} // ocultamos el formulario de añadir la nueva ciudad
+          cityAction={props.cityAction} // pasamos la cityAction como prop para que vuelva a mostrar el listado de ciudades cuando añadimos una nueva
+        />}
 
       {/* Renderizamos el componente Itinerary si showItinerary es true y hay una ciudad seleccionada*/}
       {showItinerary && selectedCityForItinerary && showItineraryData && (
         <>
-          <Itinerary city={selectedCityForItinerary} />
+          <Itinerary
+            city={selectedCityForItinerary}
+          />
         </>
       )}
 
       {/* Renderiza la lista de ciudades solo si showCityList es true */}
       {showCityList && (
-        <div>
+        <div >
           <ul>{ShowCities()}</ul>
         </div>
       )}
 
       {/* siempre mostramos esta section que es la barra inferior con los iconos */}
-      <section className="Container-Icons">
+      <div className="Container-Icons">
         <a href="#" onClick={goBack}>
           <HomeIcon />
         </a>
         <a href="#" onClick={goBackToListOfCities}>
           <ArrowBackIosNewIcon />
         </a>
-      </section>
+      </div>
+
     </>
   );
 };

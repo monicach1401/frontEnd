@@ -11,8 +11,10 @@ const Itinerary = ({ city, itineraries, loadItinerariesByCity }) => {
 
   // Cargamos los itinerarios de la ciudad seleccionada cuando el componente se monta y cuando seleccionamos una ciudad
   useEffect(() => {
-    loadItinerariesByCity(city.name);
-  }, [city, loadItinerariesByCity]);   // city y loadItinerariesByCity porque quiero que se ejecute la primera vez y cada bez que seleccionemos una ciudad 
+      loadItinerariesByCity(city.name);
+  }, [city, loadItinerariesByCity,itineraries]);   // city y loadItinerariesByCity porque quiero que se ejecute la primera vez y cada bez que seleccionemos una ciudad 
+ 
+  // al añadir itineraries en las dependencias, justo cuando se añada un nuevo itinerario se volvera a ejecutar el useEffect y lo mostrará por pantalla
 
   // ahora las cities es un array dentro de un objecto
   const itinerariesData = itineraries.itineraries;
@@ -31,14 +33,13 @@ const Itinerary = ({ city, itineraries, loadItinerariesByCity }) => {
           : (
             <ul>
               {itinerariesData.map((itinerary) => (
-                <li key={itinerary._id}>
-                  <strong>TITLE: {itinerary.title}</strong>
-                  <div>
-                    <p></p>
-                    <p>Duration: {itinerary.duration}</p>
-                    <p>Price: {itinerary.price}</p>
-                    <p>Rating: {itinerary.rating}</p>
-                    <p>ProfilePicture: <img src={itinerary.profilePicture} alt="..." style={{ maxWidth: '95%', maxHeight: '240px' }}></img></p>
+                <li key={itinerary._id} className="listofItineraries">
+                  <div className="card ">
+                    <strong>TITLE: {itinerary.title}</strong>
+                    <p className="card-text">Duration: {itinerary.duration}</p>
+                    <p className="card-text">Price: {itinerary.price}</p>
+                    <p className="card-text">Rating: {itinerary.rating}</p>
+                    <p className="card-text">ProfilePicture: <img src={itinerary.profilePicture} alt="..." style={{ maxWidth: '95%', maxHeight: '240px' }}></img></p>
                   </div>
                 </li>
               ))}
@@ -47,8 +48,10 @@ const Itinerary = ({ city, itineraries, loadItinerariesByCity }) => {
         }
       </div>
       {/* Renderizamos el formulario si showNewCityForm es true , showItinerary es false y cuando los datos se envien se llamará a la función onSucess que ocultará el formulario*/}
-      {showNewItineraryForm && <NewItineraryForm hideForm={() => setShowNewItineraryForm(false)} />}
+      {showNewItineraryForm && <NewItineraryForm
+        hideForm={() => setShowNewItineraryForm(false)}
 
+      />}
     </>
   );
 };
@@ -56,7 +59,7 @@ const Itinerary = ({ city, itineraries, loadItinerariesByCity }) => {
 /*---- Connect con REDUX ------------------ */
 /* Obtenemos una parte del state y se lo pasamos como props al mi componente*/
 const mapStateToProps = (state) => {
-   return {
+  return {
     itineraries: state.itineraries,
   };
 };
