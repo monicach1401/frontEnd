@@ -1,12 +1,14 @@
 import React from "react";
 import circledright2 from '../images/circledright2.png';
 import { Link } from "react-router-dom";
-
+import MYtineraryLogo from '../images/MYtineraryLogo.png'
 
 export const Landing = () => {
     return (
         <>
+     
             <div className="container-landing">
+            <img src={MYtineraryLogo} alt="myItinerary" />
                 <div className="description">
                     <p><strong>Find your perfect trip</strong>, designed by insiders who know and love their cities</p>
                 </div>

@@ -1,4 +1,7 @@
 /* Landing */
+.logo{
+  position: fixed;
+}
 .container-landing {
   position: relative;
   width: 100%;
@@ -12,14 +15,16 @@
 .description {
   position: fixed;
   text-align: center;
-  margin-top: 250px;
+  margin-top: 200px;
   margin-left: 20px;
   margin-right: 10px;
   font-family: cursive;
+  background-color:cornsilk;
+  padding-left: 5px;
 }
 
 .description p {
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .start-browsing {
@@ -27,7 +32,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
   width: 250px;
-  margin-top: 350px;
+  margin-top: 280px;
   margin-left: 70px;
   margin-right: 40px;
 }
