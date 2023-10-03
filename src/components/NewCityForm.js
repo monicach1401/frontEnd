@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 
 export const NewCityForm = ({ hideForm, cityAction }) => {
-
-  /*------------El hook "useForm" se utiliza para gestionar el estado y la validación de formularios.
-   la función "register" se utiliza para registrar los campos de entrada en el formulario, y devuelve las propiedades necesarias para cada entrada.
-   La función "handleSubmit" se pasa a la propiedad "onSubmit" del formulario y es responsable de manejar el envío del formulario.*/
+  /*------------El hook "useForm" se utiliza para gestionar el estado 
+   la validación de formularios. La función "register" se utiliza para registrar 
+   los campos de entrada en el formulario, y devuelve las propiedades necesarias para cada entrada.
+   La función "handleSubmit" se pasa a la propiedad "onSubmit" del formulario y 
+   es responsable de manejar el envío del formulario.*/
   
   const {
     register,
@@ -13,12 +14,12 @@ export const NewCityForm = ({ hideForm, cityAction }) => {
     formState: { errors },
   } = useForm();
 
-  // -----------Función para el botón de Cancel del Formulario
+  // ---Función para el botón de Cancel del Formulario
   const handleCancel = () => {
-    hideForm(); // Llama a la función hideForm para ocultar el formulario
+    hideForm(); 
   };
 
-  //------------- Función que añade los datos del formulario en la base de datos
+  //---Función que añade los datos del formulario en la base de datos
   const addCityToDatabase = (data) => {
     // Datos del formulario los guardo en el objecto newCityData
     const newCityData = {
@@ -39,7 +40,8 @@ export const NewCityForm = ({ hideForm, cityAction }) => {
       .then(data => {
         hideForm(); // oculta el formulario
         console.log(data);
-        cityAction(); // volvemos a llamar a cityAcion para mostrar las ciudades una vez que añadimos una en la base de datos
+        // volvemos a llamar a cityAcion para mostrar las ciudades una vez que añadimos una en la base de datos
+        cityAction(); 
     
       })
       .catch(error => {

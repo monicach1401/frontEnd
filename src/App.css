@@ -1,52 +1,59 @@
 /* Landing */
-.logo{
+.container {
   position: fixed;
-}
-.container-landing {
-  position: relative;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100vh;
-  background-image: url('../src/images/travel.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  z-index: 3; /* Ajusta el valor de z-index según sea necesario */
+  /* Otros estilos que desees aplicar al contenedor fijo */
+}
+.container_logo{
+  width: 30vw; /* es un 30% del ancho de la ventana*/
+  margin-top: 20px;
+  margin-bottom: 10px;
+  /*al poner los margenes izquierdo y derecho auto, centramos el logo*/
+  margin-left: auto; 
+  margin-right: auto;
+ }
+
+.container_photo{
+  position: relative; 
+  width: 95vw; 
+  height: 100vh; 
+  max-width: 1000px;
+  min-width: 320px; /* maximo en dispositivos mobiles*/
+  margin: auto;
 }
 
-.description {
-  position: fixed;
-  text-align: center;
-  margin-top: 200px;
-  margin-left: 20px;
-  margin-right: 10px;
-  font-family: cursive;
-  background-color:cornsilk;
-  padding-left: 5px;
+.travel{
+  width: 100%;/* coge el 100% del container*/
+  height: 87%;
 }
 
-.description p {
-  font-size: 15px;
+.container_photo p {
+  position: absolute; /*depende del padre no de la pantalla */
+  top: 17%; 
+  left: 20px; 
+  right: 10px; 
+  font-size: large;
+  text-align:center;
+  background-color: rgba(255, 255, 255, 0.4); /* fondo semi-transparente para mayor legibilidad */
+  padding: 10%; /* altura */
+  z-index: 1; /* Establece un valor de z-index mayor para que el <p> esté por encima de la imagen */
 }
 
-.start-browsing {
-  position: fixed;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  width: 250px;
-  margin-top: 280px;
-  margin-left: 70px;
-  margin-right: 40px;
+.container_photo h5 {
+  margin-top: 5%; 
+  color:brown
 }
 
-.start-browsing h6 {
-  text-align: center;
-  font-size: x-large;
+.circle {
+  background-color:#f1aa3f;
+  border-radius: 50%; /* 50% para un círculo perfecto*/ 
+  padding: 10px; /* Espacio alrededor del círculo*/
+  margin-left: 5%;
+  margin-top: 5%;
 }
-
-.start-browsing img {
-  margin-left: 85px;
-}
-
-
 
 /* Filter de la ciudad */
 .filter-container {

@@ -1,24 +1,32 @@
 import React from "react";
-import circledright2 from '../images/circledright2.png';
 import { Link } from "react-router-dom";
-import MYtineraryLogo from '../images/MYtineraryLogo.png'
+import travel from "../assets/images/travel.jpg";
+import MYtineraryLogo from "../assets/images/MYtineraryLogo.png";
+import circledright2 from "../assets/images/circledright2.png";
 
 export const Landing = () => {
-    return (
-        <>
-     
-            <div className="container-landing">
-            <img src={MYtineraryLogo} alt="myItinerary" />
-                <div className="description">
-                    <p><strong>Find your perfect trip</strong>, designed by insiders who know and love their cities</p>
-                </div>
-                <div className="start-browsing" >
-                    <h6 ><strong>Want to build your own MYtinerary?</strong></h6>
-                    <Link to="/cities">
-                        <img src={circledright2} alt="Circled Right" />
-                    </Link>
-                </div>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="container">
+        <div className="container_logo">
+          <img src={MYtineraryLogo} alt="myItinerary" />
+        </div>
+        <div className="container_photo">
+          <img className="travel" src={travel} alt="travel" />
+          <p>
+            <strong>Find your perfect trip</strong>, designed by insiders who
+            know and love their cities.
+            <br />   <br />
+            <strong>Want to build your own MYtinerary? </strong>
+            <br />
+            <h5><strong>Click Here</strong></h5>
+            <Link to="/cities">
+            <img className="circle" src={circledright2} alt="Circled Right" />
+          </Link>
+          </p>
+         
+        </div>
+      </div>
+    </>
+  );
 };

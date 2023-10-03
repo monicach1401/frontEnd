@@ -3,20 +3,19 @@ import { connect } from 'react-redux';
 import { loadItinerariesByCity } from '../store/actions/ItinerariesByCity';
 import { NewItineraryForm } from './NewItineraryForm';
 
-
 const Itinerary = ({ city, itineraries, loadItinerariesByCity }) => {
-
   //  Estado para controlar la visibilidad del formulario de NewItinerary
   const [showNewItineraryForm, setShowNewItineraryForm] = useState(false);
 
-  // Cargamos los itinerarios de la ciudad seleccionada cuando el componente se monta y cuando seleccionamos una ciudad
+  /*Cargamos los itinerarios de la ciudad seleccionada cuando el componente 
+  se monta y cuando seleccionamos una ciudad*/
   useEffect(() => {
       loadItinerariesByCity(city.name);
-  }, [city, loadItinerariesByCity,itineraries]);   // city y loadItinerariesByCity porque quiero que se ejecute la primera vez y cada bez que seleccionemos una ciudad 
+      /* city y loadItinerariesByCity porque quiero que se ejecute la primera vez 
+      y cada vez que seleccionemos una ciudad*/ 
+  }, [city, loadItinerariesByCity,itineraries]);   
  
-  // al añadir itineraries en las dependencias, justo cuando se añada un nuevo itinerario se volvera a ejecutar el useEffect y lo mostrará por pantalla
-
-  // ahora las cities es un array dentro de un objecto
+ // ahora las cities es un array dentro de un objecto
   const itinerariesData = itineraries.itineraries;
 
   return (
@@ -47,7 +46,9 @@ const Itinerary = ({ city, itineraries, loadItinerariesByCity }) => {
           )
         }
       </div>
-      {/* Renderizamos el formulario si showNewCityForm es true , showItinerary es false y cuando los datos se envien se llamará a la función onSucess que ocultará el formulario*/}
+      {/* Renderizamos el formulario si showNewCityForm es true , 
+      showItinerary es false y cuando los datos se envien se llamará a la función onSucess 
+      que ocultará el formulario*/}
       {showNewItineraryForm && <NewItineraryForm
         hideForm={() => setShowNewItineraryForm(false)}
 
